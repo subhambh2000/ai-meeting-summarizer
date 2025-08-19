@@ -21,6 +21,7 @@ ENV/
 
 # IDE/editor configs
 .idea/
+*.iml
 
 # OS files
 .DS_Store

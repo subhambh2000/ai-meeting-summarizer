@@ -1,0 +1,17 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+GET http://127.0.0.1:8000/health
+
+###
+POST http://127.0.0.1:8000/process
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="resources_RC_Conversation_Sample.mp3"
+Content-Type: audio/mpeg
+
+< ./resources_RC_Conversation_Sample.mp3
+------WebKitFormBoundary--
