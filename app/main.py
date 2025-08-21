@@ -32,7 +32,7 @@ RESULTS_DIR = "results"
 # Ensure the results directory exists, creating it if necessary
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-app.mount("/static", StaticFiles(directory="results"), name="static")
+app.mount("/static", StaticFiles(directory=RESULTS_DIR), name="static")
 
 
 @app.get("/health")
