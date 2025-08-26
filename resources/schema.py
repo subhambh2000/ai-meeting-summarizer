@@ -7,3 +7,10 @@ MEETING_TABLE_SCHEMA = """CREATE TABLE IF NOT EXISTS meetings
                               pdf_path   TEXT,
                               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                           )"""
+USER_TABLE_SCHEMA = """CREATE TABLE IF NOT EXISTS users
+                       (
+                           id              INTEGER PRIMARY KEY AUTOINCREMENT,
+                           username        TEXT NOT NULL UNIQUE,
+                           hashed_password TEXT NOT NULL,
+                           created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                       )"""

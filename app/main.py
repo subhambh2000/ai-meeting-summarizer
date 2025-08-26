@@ -11,6 +11,7 @@ from app.services.db_service import init_db, save_meeting, get_all_meetings, get
 from app.services.pdf_service import pdf_generator
 from app.services.stt_service import transcribe_audio
 from app.services.summary_service import summarize_text
+from app.auth.routes import router
 
 
 @asynccontextmanager
@@ -38,6 +39,9 @@ app.mount("/static", StaticFiles(directory=RESULTS_DIR), name="static")
 @app.get("/health")
 def health_check():
     return {"status": "200"}
+
+
+app.include_router(router)
 
 
 @app.post("/process")
