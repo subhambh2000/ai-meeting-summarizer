@@ -21,11 +21,13 @@ ENV/
 
 # IDE/editor configs
 .idea/
+*.iml
 
 # OS files
 .DS_Store
 Thumbs.db
 
 # Ignore generated pdfs
-results/
-uploads/
+*.pdf
+*.mp3
+*.db

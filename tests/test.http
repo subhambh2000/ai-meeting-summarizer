@@ -1,0 +1,42 @@
+// These are HTTP requests for testing the FastAPI application.
+
+###
+GET http://127.0.0.1:8000/health
+
+###
+GET http://127.0.0.1:8000/meetings
+
+###
+GET http://127.0.0.1:8000/meeting/1
+
+###
+POST http://127.0.0.1:8000/auth/signup
+Content-Type: application/json
+
+{
+  "username": "test_user",
+  "password": "test-password"
+}
+
+###
+POST http://127.0.0.1:8000/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=test_user&password=test-password
+
+> {%client.global.set("token", response.body.access_token);%}
+
+###
+
+###
+
+POST http://127.0.0.1:8000/process
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="resources_RC_Conversation_Sample.mp3"
+Content-Type: audio/mpeg
+
+< ./resources_RC_Conversation_Sample.mp3
+------WebKitFormBoundary--
