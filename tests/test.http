@@ -1,6 +1,4 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+// These are HTTP requests for testing the FastAPI application.
 
 ###
 GET http://127.0.0.1:8000/health
@@ -21,7 +19,22 @@ Content-Type: application/json
 }
 
 ###
+POST http://127.0.0.1:8000/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username = test_user &
+password = test-password
+
+> {%
+    client.global.set("token", response.body.access_token);
+%}
+
+###
+
+###
+
 POST http://127.0.0.1:8000/process
+Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
 
 ------WebKitFormBoundary
