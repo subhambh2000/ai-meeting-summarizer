@@ -1,11 +1,13 @@
 MEETING_TABLE_SCHEMA = """CREATE TABLE IF NOT EXISTS meetings
                           (
                               id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                              filename   TEXT NOT NULL,
+                              user_id    INTEGER NOT NULL,
+                              filename   TEXT    NOT NULL,
                               transcript TEXT,
                               summary    TEXT,
                               pdf_path   TEXT,
-                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                              FOREIGN KEY (user_id) REFERENCES users (id)
                           )"""
 USER_TABLE_SCHEMA = """CREATE TABLE IF NOT EXISTS users
                        (

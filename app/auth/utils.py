@@ -19,7 +19,7 @@ def hash_password(password: str) -> str:
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     try:
-        return pass_hasher.verify(plain_password, hashed_password)
+        return pass_hasher.verify(hashed_password, plain_password)
     except Exception:
         return False
 

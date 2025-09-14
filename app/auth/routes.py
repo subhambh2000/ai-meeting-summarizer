@@ -7,7 +7,7 @@ from starlette import status
 
 from app.auth.schemas import UserOut, SignUpIn, TokenOut
 from app.auth.utils import hash_password, verify_password, create_access_token, decode_access_token
-from app.services.db_service import get_user_by_username, create_user
+from app.services.database import get_user_by_username, create_user, get_user_by_id
 
 router = APIRouter()
 
@@ -31,15 +31,16 @@ async def signup(payload: SignUpIn):
 @router.post("/auth/login", response_model=TokenOut)
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
     user = get_user_by_username(form_data.username)
-    if not user or not verify_password(form_data.password, user["password"]):
+    if not user or not verify_password(form_data.password, user["hashed_password"]):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
-            headers=["WWW-Authenticate", "Bearer"]
+            headers={"WWW-Authenticate": "Bearer"}
         )
 
     token = create_access_token({"sub": str(user["id"])})
-    return token
+    response = TokenOut(access_token=token)
+    return response
 
 
 def get_current_user(token: str = Depends(oauth2_scheme)) -> UserOut:
@@ -49,10 +50,10 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> UserOut:
         raise HTTPException(
             status_code=HTTPStatus.UNAUTHORIZED,
             detail="Invalid or expired token",
-            headers=["WWW-Authenticate", "Bearer"])
+            headers={"WWW-Authenticate": "Bearer"})
 
     user_id = int(payload["sub"])
-    user = get_user_by_username(user_id)
+    user = get_user_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
