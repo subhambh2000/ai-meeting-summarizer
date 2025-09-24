@@ -40,7 +40,7 @@ and individuals seeking efficient meeting documentation.
 
 ### 1. Start the API Server
 
-Run the FastAPI application (replace `app.main` with your actual module path if different):
+Run the FastAPI application:
 
 ```sh
   uvicorn app.main:app --reload
