@@ -40,7 +40,7 @@ and individuals seeking efficient meeting documentation.
 
 ### 1. Start the API Server
 
-Run the FastAPI application (replace `app.main` with your actual module path if different):
+Run the FastAPI application:
 
 ```sh
   uvicorn app.main:app --reload
@@ -109,4 +109,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For questions or support, contact [subhambh2000](https://github.com/subhambh2000).
+For questions or support, contact [Subham Bhattacharjee](https://github.com/subhambh2000).
