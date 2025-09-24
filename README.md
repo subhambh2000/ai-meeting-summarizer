@@ -109,4 +109,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For questions or support, contact [subhambh2000](https://github.com/subhambh2000).
+For questions or support, contact [Subham Bhattacharjee](https://github.com/subhambh2000).
